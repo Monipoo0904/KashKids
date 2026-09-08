@@ -132,6 +132,8 @@ section{position:relative;}
 .brand .logo-mark{width:42px;height:42px;flex:none;}
 .brand .brand-kash{color:var(--green-600);}
 .brand .brand-kids{color:var(--coral-500);}
+.logo-img{height:38px;width:auto;display:block;}
+.logo-img-footer{height:46px;}
 
 .nav-desktop{display:flex;align-items:center;gap:2px;}
 .nav-desktop a{
