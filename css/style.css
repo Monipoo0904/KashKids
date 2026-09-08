@@ -3,22 +3,22 @@
    ========================================================================== */
 
 :root{
-  /* Brand palette — cool-toned: electric blue, violet, cyan */
-  --green-900:#0b1440;
-  --green-700:#1d4ed8;
-  --green-600:#2563eb;
-  --green-500:#3b82f6;
-  --green-400:#60a5fa;
-  --green-100:#e7efff;
+  /* Brand palette — energetic, saturated green + punchy coral/gold */
+  --green-900:#063d1f;
+  --green-700:#068a4d;
+  --green-600:#00b368;
+  --green-500:#22d17a;
+  --green-400:#5cf0a3;
+  --green-100:#e0fbef;
 
-  --navy-900:#0f1729;
-  --navy-700:#1e2a47;
+  --navy-900:#0d1b2a;
+  --navy-700:#16324a;
 
-  --gold-500:#06b6d4;
-  --gold-400:#22d3ee;
+  --gold-500:#ffb100;
+  --gold-400:#ffd60a;
 
-  --coral-500:#7c3aed;
-  --coral-600:#6d28d9;
+  --coral-500:#ff4d4d;
+  --coral-600:#e6303f;
 
   /* Semantic — decoupled from brand so correct/wrong always read as green/red */
   --success-500:#22c55e;
@@ -255,8 +255,8 @@ section{position:relative;}
 .card p{color:var(--ink-soft);margin-bottom:0;}
 
 /* Value/feature cards with color variants */
-.card.c-gold .icon-badge{background:#cffafe;color:#0e7490;}
-.card.c-coral .icon-badge{background:#f3e8ff;color:var(--coral-600);}
+.card.c-gold .icon-badge{background:#fff3d6;color:#a06d00;}
+.card.c-coral .icon-badge{background:#ffe4e0;color:var(--coral-600);}
 .card.c-navy .icon-badge{background:#e6edf5;color:var(--navy-700);}
 
 /* Program cards */
@@ -272,8 +272,8 @@ section{position:relative;}
 }
 .program-media.m1{background:linear-gradient(135deg,var(--green-600),var(--green-400));}
 .program-media.m2{background:linear-gradient(135deg,var(--coral-600),var(--coral-500));}
-.program-media.m3{background:linear-gradient(135deg,#0e7490,#22d3ee);}
-.program-media.m4{background:linear-gradient(135deg,#5b21b6,#a78bfa);}
+.program-media.m3{background:linear-gradient(135deg,#20406b,#3f6ea5);}
+.program-media.m4{background:linear-gradient(135deg,#a06d00,var(--gold-500));}
 .program-body{padding:26px;display:flex;flex-direction:column;gap:10px;flex:1;}
 .program-tag{
   align-self:flex-start;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
@@ -392,7 +392,7 @@ section{position:relative;}
 }
 .blob-panel.bp1{background:linear-gradient(135deg,var(--green-600),var(--green-400));}
 .blob-panel.bp2{background:linear-gradient(135deg,var(--coral-600),var(--coral-500));}
-.blob-panel.bp3{background:linear-gradient(135deg,#0e7490,#22d3ee);}
+.blob-panel.bp3{background:linear-gradient(135deg,#20406b,#3f6ea5);}
 
 /* ---------- Badges / pills ---------- */
 .pill-row{display:flex;flex-wrap:wrap;gap:10px;}
