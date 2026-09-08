@@ -3,22 +3,28 @@
    ========================================================================== */
 
 :root{
-  /* Brand palette — energetic, money/growth themed, youth-friendly */
-  --green-900:#0b3d2e;
-  --green-700:#0f6b4a;
-  --green-600:#128a5c;
-  --green-500:#1aa86f;
-  --green-400:#3ecf8e;
-  --green-100:#e4f8ee;
+  /* Brand palette — cool-toned: electric blue, violet, cyan */
+  --green-900:#0b1440;
+  --green-700:#1d4ed8;
+  --green-600:#2563eb;
+  --green-500:#3b82f6;
+  --green-400:#60a5fa;
+  --green-100:#e7efff;
 
-  --navy-900:#0d1b2a;
-  --navy-700:#16324a;
+  --navy-900:#0f1729;
+  --navy-700:#1e2a47;
 
-  --gold-500:#f5b301;
-  --gold-400:#ffc93c;
+  --gold-500:#06b6d4;
+  --gold-400:#22d3ee;
 
-  --coral-500:#ff6b57;
-  --coral-600:#f0472f;
+  --coral-500:#7c3aed;
+  --coral-600:#6d28d9;
+
+  /* Semantic — decoupled from brand so correct/wrong always read as green/red */
+  --success-500:#22c55e;
+  --success-100:#dcfce7;
+  --error-500:#ef4444;
+  --error-100:#fee2e2;
 
   --ink:#10241d;
   --ink-soft:#3d554b;
@@ -249,8 +255,8 @@ section{position:relative;}
 .card p{color:var(--ink-soft);margin-bottom:0;}
 
 /* Value/feature cards with color variants */
-.card.c-gold .icon-badge{background:#fff3d6;color:#a06d00;}
-.card.c-coral .icon-badge{background:#ffe4e0;color:var(--coral-600);}
+.card.c-gold .icon-badge{background:#cffafe;color:#0e7490;}
+.card.c-coral .icon-badge{background:#f3e8ff;color:var(--coral-600);}
 .card.c-navy .icon-badge{background:#e6edf5;color:var(--navy-700);}
 
 /* Program cards */
@@ -266,8 +272,8 @@ section{position:relative;}
 }
 .program-media.m1{background:linear-gradient(135deg,var(--green-600),var(--green-400));}
 .program-media.m2{background:linear-gradient(135deg,var(--coral-600),var(--coral-500));}
-.program-media.m3{background:linear-gradient(135deg,#20406b,#3f6ea5);}
-.program-media.m4{background:linear-gradient(135deg,#a06d00,var(--gold-500));}
+.program-media.m3{background:linear-gradient(135deg,#0e7490,#22d3ee);}
+.program-media.m4{background:linear-gradient(135deg,#5b21b6,#a78bfa);}
 .program-body{padding:26px;display:flex;flex-direction:column;gap:10px;flex:1;}
 .program-tag{
   align-self:flex-start;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
@@ -336,7 +342,7 @@ section{position:relative;}
 
 /* ---------- Page hero (inner pages) ---------- */
 .page-hero{
-  background:linear-gradient(160deg,var(--navy-900), var(--green-800,#0f5738));
+  background:linear-gradient(160deg,var(--navy-900), var(--green-700));
   color:#fff;padding:64px 0 80px;text-align:center;position:relative;overflow:hidden;
 }
 .page-hero h1{color:#fff;font-size:clamp(2.2rem,4vw,3rem);}
@@ -386,7 +392,7 @@ section{position:relative;}
 }
 .blob-panel.bp1{background:linear-gradient(135deg,var(--green-600),var(--green-400));}
 .blob-panel.bp2{background:linear-gradient(135deg,var(--coral-600),var(--coral-500));}
-.blob-panel.bp3{background:linear-gradient(135deg,#20406b,#3f6ea5);}
+.blob-panel.bp3{background:linear-gradient(135deg,#0e7490,#22d3ee);}
 
 /* ---------- Badges / pills ---------- */
 .pill-row{display:flex;flex-wrap:wrap;gap:10px;}
@@ -419,10 +425,10 @@ section{position:relative;}
   width:28px;height:28px;border-radius:50%;background:#fff;border:1.5px solid var(--line);
   display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex:none;
 }
-.quiz-option.correct{background:var(--green-100);border-color:var(--green-500);}
-.quiz-option.correct .letter{background:var(--green-500);color:#fff;border-color:var(--green-500);}
-.quiz-option.wrong{background:#ffe4e0;border-color:var(--coral-500);}
-.quiz-option.wrong .letter{background:var(--coral-500);color:#fff;border-color:var(--coral-500);}
+.quiz-option.correct{background:var(--success-100);border-color:var(--success-500);}
+.quiz-option.correct .letter{background:var(--success-500);color:#fff;border-color:var(--success-500);}
+.quiz-option.wrong{background:var(--error-100);border-color:var(--error-500);}
+.quiz-option.wrong .letter{background:var(--error-500);color:#fff;border-color:var(--error-500);}
 .quiz-option[disabled]{cursor:default;}
 .quiz-feedback{font-weight:600;margin-bottom:20px;display:none;}
 .quiz-feedback.show{display:block;}

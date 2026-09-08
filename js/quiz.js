@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
             optionButtons[slide.correct].classList.add('correct');
           }
           feedback.textContent = (isCorrect ? '✅ ' : '❌ ') + slide.explain;
-          feedback.style.color = isCorrect ? 'var(--green-700)' : 'var(--coral-600)';
+          feedback.style.color = isCorrect ? 'var(--success-500)' : 'var(--error-500)';
           feedback.classList.add('show');
           nextBtn.disabled = false;
         }, { once: true });
