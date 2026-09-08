@@ -218,9 +218,9 @@ section{position:relative;}
 .partner-strip .track span{font-family:var(--font-head);font-weight:700;color:var(--ink-soft);opacity:.6;font-size:1.05rem;}
 .partner-strip .track img{
   height:34px;width:auto;max-width:140px;object-fit:contain;
-  filter:grayscale(1);opacity:.55;transition:filter .2s,opacity .2s;flex:none;
+  opacity:.9;transition:opacity .2s,transform .2s;flex:none;
 }
-.partner-strip .track img:hover{filter:grayscale(0);opacity:1;}
+.partner-strip .track img:hover{opacity:1;transform:scale(1.06);}
 @keyframes scroll-left{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
 /* ---------- Photo gallery ---------- */
