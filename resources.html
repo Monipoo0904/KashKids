@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stories & Resources — Kash Kids</title>
+<meta name="description" content="Parent resources, events, classroom stories, and community reviews from Kash Kids. Join the Kash Kids parent email list.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%2300B368%22/><text x=%2250%22 y=%2266%22 font-size=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22sans-serif%22>%24</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <a class="mmit-bar" href="money-makers.html#register">
+    <span>🏆 <b>Money Makers in Training</b><span class="mmit-bar-long"> · <span data-mmit-label>Register your school or join the interest list</span></span></span>
+    <span class="mmit-bar-go"><span data-mmit-cta data-open-text="Register Your School" data-closed-text="Learn more">Learn more</span> →</span>
+  </a>
+  <div class="container">
+    <a href="index.html" class="brand"><img src="assets/logo.webp" alt="Kash Kids home" class="logo-img"></a>
+    <nav class="nav-desktop" aria-label="Primary">
+      <a href="about.html">About</a>
+      <a href="programs.html">Programs</a>
+      <a href="money-makers.html">Money Makers in Training</a>
+      <a href="get-involved.html">Get Involved</a>
+      <a href="resources.html">Stories &amp; Resources</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="header-cta">
+      <a data-link="prindleHouse" class="nav-shop">🛍️ Shop</a>
+      <a href="donate.html" class="btn btn-primary btn-sm">Donate</a>
+    </div>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+  <a href="about.html">About</a>
+  <a href="programs.html">Programs</a>
+  <a href="money-makers.html">Money Makers in Training</a>
+  <a href="get-involved.html">Get Involved</a>
+  <a href="resources.html">Stories &amp; Resources</a>
+  <a href="contact.html">Contact</a>
+  <a href="lesson.html">Try a Lesson</a>
+  <div class="header-cta">
+    <a data-link="prindleHouse" class="btn btn-ghost">Shop at Prindle House</a>
+    <a href="donate.html" class="btn btn-primary">Donate</a>
+  </div>
+</nav>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a> / Stories &amp; Resources</div>
+    <span class="eyebrow on-dark">Stories &amp; resources</span>
+    <h1>Keep the money conversation going</h1>
+    <p class="lede">Activities for families, upcoming events, and stories from our classrooms and community.</p>
+  </div>
+</section>
+
+<!-- Parent email list -->
+<section class="section-pad" id="parent-list">
+  <div class="container">
+    <div class="parent-signup reveal">
+      <div>
+        <span class="eyebrow on-dark">For parents &amp; caregivers</span>
+        <h2>Help your child build smart money habits</h2>
+        <p>Join the Kash Kids parent email list for practical activities, conversation starters, and resources to keep learning at home.</p>
+        <a href="lesson.html" class="btn btn-ghost on-dark" style="margin-top:8px;">Try a Lesson Together</a>
+      </div>
+      <div class="form-card">
+        <form data-form="convertkit" data-success="#parent-success">
+          <div class="form-status" aria-live="polite"></div>
+          <div class="form-field">
+            <label for="p-first">First name <span style="font-weight:500;color:var(--ink-soft);">(optional)</span></label>
+            <input type="text" id="p-first" name="fields[first_name]" autocomplete="given-name">
+          </div>
+          <div class="form-field">
+            <label for="p-email">Email</label>
+            <input type="email" id="p-email" name="email_address" required autocomplete="email">
+          </div>
+          <label class="consent">
+            <input type="checkbox" name="consent" required>
+            Yes, send me Kash Kids parent emails. I can unsubscribe at any time.
+          </label>
+          <button type="submit" class="btn btn-primary btn-block">Join Our Parent Email List</button>
+        </form>
+        <div class="form-success" id="parent-success" tabindex="-1" role="status">
+          📬 Almost done! Check your inbox for a confirmation email.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Parent resources -->
+<section class="section-pad" style="padding-top:0;" data-resources-block>
+  <div class="container">
+    <div class="section-head reveal" style="margin-bottom:32px;">
+      <span class="eyebrow">For families</span>
+      <h2>Parent resources</h2>
+    </div>
+    <div class="grid grid-3" data-resources></div>
+  </div>
+</section>
+
+<!-- Events -->
+<section class="section-pad" id="events" style="background:var(--paper-soft)">
+  <div class="container" style="max-width:860px;">
+    <div class="section-head reveal" style="margin-bottom:32px;">
+      <span class="eyebrow">Events</span>
+      <h2>Upcoming events</h2>
+    </div>
+    <div style="display:grid;gap:16px;" data-events="upcoming"></div>
+    <div data-past-block style="margin-top:48px;">
+      <h3>Past events</h3>
+      <div style="display:grid;gap:16px;opacity:.8;" data-events="past"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Stories -->
+<section class="section-pad">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">From the classroom</span>
+      <h2>Stories</h2>
+    </div>
+    <div class="grid grid-3 reveal-stagger">
+      <div class="photo-card"><img src="assets/photos/classroom-lesson.webp" alt="Students raising their hands during a Kash Kids lesson"></div>
+      <div class="photo-card"><img src="assets/photos/classroom-assembly.webp" alt="Kash Kids mascot with students at a school assembly"></div>
+      <div class="photo-card"><img src="assets/photos/classroom-banner-group.webp" alt="Students holding a Kash Kids banner"></div>
+    </div>
+    <p class="text-center"><span class="pending">Needs: initial classroom stories from Biane</span></p>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section class="section-pad" style="background:var(--paper-soft)" data-reviews-section>
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Community reviews</span>
+      <h2>What families and partners say</h2>
+      <p class="lede center-col">Reviews shared on our Google business page. <a data-link="googleReviews" style="text-decoration:underline;">Read all reviews</a></p>
+    </div>
+    <div class="grid grid-3" data-reviews></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="brand"><img src="assets/logo.webp" alt="Kash Kids home" class="logo-img logo-img-footer"></a>
+        <p style="margin-top:14px;max-width:290px;">Kash Kids helps K–12 students build practical money skills through stories, games, and hands-on experiences.</p>
+        <div class="footer-social" data-social></div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">About Kash Kids</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="lesson.html">Try a Lesson</a></li>
+          <li><a href="money-makers.html">Money Makers in Training</a></li>
+          <li><a href="resources.html">Stories &amp; Resources</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get Involved</h4>
+        <ul class="footer-links">
+          <li><a href="programs.html#request">Bring Kash Kids to Your School</a></li>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="get-involved.html">Partner or Volunteer</a></li>
+          <li><a data-link="prindleHouse">Shop at Prindle House</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-links footer-contact">
+          <li data-contact="email"></li>
+          <li data-contact-row><span data-contact="phone"></span></li>
+          <li>Jacksonville, Florida</li>
+        </ul>
+        <a href="resources.html#parent-list" class="btn btn-gold btn-sm" style="margin-top:8px;">Join Our Parent Email List</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year></span> Kash Kids. All rights reserved.</span>
+      <span>Made with 💚 in Jacksonville for financially confident kids.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site-config.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

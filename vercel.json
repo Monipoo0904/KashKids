@@ -1,4 +1,9 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/blog", "destination": "/resources", "permanent": true },
+    { "source": "/blog-post", "destination": "/resources", "permanent": true },
+    { "source": "/events", "destination": "/resources#events", "permanent": true }
+  ]
 }
