@@ -4,34 +4,28 @@ An enhanced, static redesign of [kashkids.org](https://kashkids.org/), a nonprof
 students real-world financial skills. Built as plain HTML/CSS/JS — no build step, no framework —
 so it deploys anywhere instantly.
 
-> **Content note:** Copy, stats, staff names, testimonials, blog posts, and events on this site
-> are illustrative placeholders drafted from the public kashkids.org site, meant to show the design
-> and features. Swap in real content, photography, and a real payment processor before launch.
+> **Status:** Content follows Twyla Prindle's handoff of October 14, 2026. The site is in **preview mode**:
+> yellow "Needs approval" notes mark anything still waiting on materials or sign-off.
 
-## What's here
+## Pages
 
-- **`index.html`** — Home page: hero, programs teaser, stats, testimonials, events/blog preview
-- **`about.html`** — Mission, story timeline, team, values
-- **`programs.html`** — Filterable catalog of programs by grade level
-- **`lesson.html`** + **`js/quiz.js`** — A real interactive lesson & quiz ("4 Ways to Make Money"),
-  scored client-side with instant feedback (progress saved to `localStorage`)
-- **`donate.html`** + **`js/calculator.js`** — Donation page with a live impact calculator
-  (slider + preset tiers) and a demo checkout form
-- **`blog.html`** / **`blog-post.html`** — Filterable blog listing + a full sample article
-- **`events.html`** — Filterable events list (workshops / fundraisers / virtual)
-- **`contact.html`** — Contact form + FAQ accordion
+- **`index.html`**: Homepage. Hero, how we support schools, grade-level path, Try a Lesson, Money Makers in Training, video, reviews, events
+- **`about.html`**: Mission, story, approach, About video, reach figures
+- **`programs.html`**: Elementary, middle/high, family engagement, program access, and the **Request a Program** form
+- **`money-makers.html`**: Money Makers in Training sessions, registration form, sponsor and volunteer actions
+- **`get-involved.html`**: Partners, supporters, ways businesses can help
+- **`resources.html`**: Parent email list (ConvertKit), parent resources, events (past events archive automatically), stories, Google reviews
+- **`donate.html`**: Zeffy giving
+- **`contact.html`**: Contact form and FAQ
+- **`lesson.html`** + **`js/lesson.js`**: "Needs, Wants, and a Money Plan" interactive sample lesson (script copy lives in `js/lesson.js`)
 
-All pages share `css/style.css` (design system: colors, type, components) and `js/main.js`
-(mobile nav, scroll reveal, animated counters, FAQ accordion, filter pills, demo form handling).
+## Editing content (Archel, Biane)
 
-## Before launch (real integrations needed)
-
-- Connect the donate/contact forms to a real backend or service (e.g. Formspree, Netlify Forms,
-  Zeffy for donations, Stripe, or a CRM)
-- Replace placeholder stats, team bios, testimonials, blog posts, and events with real content
-- Swap the inline SVG logo for a real brand logo/favicon if one exists
-- Add real photography (currently uses color/gradient panels + emoji as stand-ins)
-- Wire up analytics (GA4/Plausible) and an SEO sitemap if desired
+Almost everything that changes lives in **`js/site-config.js`**: links (Zeffy, Prindle House, sponsorship sheet),
+form destinations, the ConvertKit form, contact details, social accounts, YouTube videos, Money Makers in Training
+status/sessions/capacity, events, Google reviews, and parent resources. Empty values are hidden on the live site.
+Set `preview: false` only after Twyla approves launch. With `preview: false`, any form that is still not connected is
+replaced by an email link, so no demonstration forms appear on the live site.
 
 ## Running locally
 

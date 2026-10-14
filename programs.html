@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Programs — Kash Kids</title>
-<meta name="description" content="Explore Kash Kids' financial literacy programs for K-12 students — from budgeting basics to investing simulations.">
+<meta name="description" content="Kash Kids financial literacy programs for elementary, middle, and high school students, plus family engagement and Money Makers in Training.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%2300B368%22/><text x=%2250%22 y=%2266%22 font-size=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22sans-serif%22>%24</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,182 +14,224 @@
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
+  <a class="mmit-bar" href="money-makers.html#register">
+    <span>🏆 <b>Money Makers in Training</b><span class="mmit-bar-long"> · <span data-mmit-label>Register your school or join the interest list</span></span></span>
+    <span class="mmit-bar-go"><span data-mmit-cta data-open-text="Register Your School" data-closed-text="Learn more">Learn more</span> →</span>
+  </a>
   <div class="container">
-    <a href="index.html" class="brand"><img src="assets/logo.webp" alt="Kash Kids" class="logo-img"></a>
+    <a href="index.html" class="brand"><img src="assets/logo.webp" alt="Kash Kids home" class="logo-img"></a>
     <nav class="nav-desktop" aria-label="Primary">
-      <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="programs.html">Programs</a>
-      <a href="events.html">Events</a>
-      <a href="blog.html">Blog</a>
+      <a href="money-makers.html">Money Makers in Training</a>
+      <a href="get-involved.html">Get Involved</a>
+      <a href="resources.html">Stories &amp; Resources</a>
       <a href="contact.html">Contact</a>
     </nav>
     <div class="header-cta">
-      <a href="lesson.html" class="btn btn-ghost btn-sm">Try a Lesson</a>
+      <a data-link="prindleHouse" class="nav-shop">🛍️ Shop</a>
       <a href="donate.html" class="btn btn-primary btn-sm">Donate</a>
     </div>
-    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
-  </div>
-  <div class="mobile-nav">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="programs.html">Programs</a>
-    <a href="events.html">Events</a>
-    <a href="blog.html">Blog</a>
-    <a href="contact.html">Contact</a>
-    <div class="header-cta">
-      <a href="lesson.html" class="btn btn-ghost">Try a Lesson</a>
-      <a href="donate.html" class="btn btn-primary">Donate</a>
-    </div>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span><span></span></button>
   </div>
 </header>
+<nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+  <a href="about.html">About</a>
+  <a href="programs.html">Programs</a>
+  <a href="money-makers.html">Money Makers in Training</a>
+  <a href="get-involved.html">Get Involved</a>
+  <a href="resources.html">Stories &amp; Resources</a>
+  <a href="contact.html">Contact</a>
+  <a href="lesson.html">Try a Lesson</a>
+  <div class="header-cta">
+    <a data-link="prindleHouse" class="btn btn-ghost">Shop at Prindle House</a>
+    <a href="donate.html" class="btn btn-primary">Donate</a>
+  </div>
+</nav>
 
 <main id="main">
 
 <section class="page-hero">
   <div class="container">
     <div class="breadcrumb"><a href="index.html">Home</a> / Programs</div>
-    <span class="eyebrow on-dark">Money Makers In Training</span>
-    <h1>Programs built for every stage of growing up</h1>
-    <p class="lede">From first allowance to first paycheck, our curriculum grows with kids — combining classroom-ready lessons, live workshops, and interactive digital experiences.</p>
+    <span class="eyebrow on-dark">Programs</span>
+    <h1>Money skills for every stage of growing up</h1>
+    <p class="lede">From identifying coins to planning for life after high school, Kash Kids helps students practice money skills at each stage of growing up. Our programs combine age-appropriate instruction with activities that make financial decisions concrete.</p>
+    <div class="hero-actions" style="justify-content:center;">
+      <a href="#request" class="btn btn-primary btn-lg">Request a Program</a>
+      <a href="lesson.html" class="btn btn-ghost on-dark btn-lg">Try a Lesson</a>
+    </div>
   </div>
 </section>
 
 <section class="section-pad">
   <div class="container">
-    <div class="pill-row reveal" style="justify-content:center;margin-bottom:40px;" data-filter-group="[data-category]">
-      <button class="pill active" data-filter="all">All Programs</button>
-      <button class="pill" data-filter="elementary">Elementary</button>
-      <button class="pill" data-filter="middle">Middle School</button>
-      <button class="pill" data-filter="high">High School</button>
+
+    <!-- Elementary -->
+    <div class="program-block split reveal" id="elementary">
+      <div>
+        <span class="grade-tag">Elementary</span>
+        <h2>Elementary financial literacy</h2>
+        <p class="lede">Students explore money through books, games, and activities covering coin recognition, earning, needs and wants, saving, spending, and simple budgeting.</p>
+        <div class="callout" style="margin-top:20px;">
+          <b>Try a sample:</b> <a href="lesson.html" style="text-decoration:underline;">Needs, Wants, and a Money Plan</a>, a five-minute interactive lesson for grades 2–5.
+        </div>
+      </div>
+      <div style="display:grid;gap:16px;">
+        <div class="card book-card">
+          <div class="book-cover" aria-hidden="true">🪙</div>
+          <div>
+            <h3>Tiny Penny, Mighty Nickel</h3>
+            <p>Children's book</p>
+          </div>
+        </div>
+        <div class="card book-card">
+          <div class="book-cover" aria-hidden="true" style="background:linear-gradient(135deg,var(--green-600),var(--green-400));">❓</div>
+          <div>
+            <h3>Where Is My Money?</h3>
+            <p>Children's book</p>
+          </div>
+        </div>
+        <span class="pending">Needs: approved book cover images</span>
+        <a data-link="prindleHouse" class="btn btn-gold">Shop at Prindle House</a>
+        <p style="font-size:.88rem;color:var(--ink-soft);margin:0;">Explore financial literacy books and learning materials from Prindle House Publishing, founded by Kash Kids founder Twyla Prindle. Purchases are processed by Prindle House; donations remain through Kash Kids.</p>
+      </div>
     </div>
 
-    <div class="grid grid-4 reveal-stagger">
-      <div class="program-card" data-category="elementary">
-        <div class="program-media m1">🪙</div>
-        <div class="program-body">
-          <span class="program-tag">Elementary · Interactive</span>
-          <h3>4 Ways to Make Money</h3>
-          <p>Kids explore earning, entrepreneurship, gifts, and investing through a story-driven lesson and quiz.</p>
-          <div class="program-meta"><span>⏱ 20 min</span><span>🎯 Grades K-5</span></div>
-        </div>
-        <div style="padding:0 26px 26px;"><a href="lesson.html" class="btn btn-ghost btn-block btn-sm">Try This Lesson</a></div>
+    <!-- Middle & High -->
+    <div class="program-block split rev reveal" id="secondary">
+      <div>
+        <span class="grade-tag">Middle &amp; High School</span>
+        <h2>Middle and high school financial literacy</h2>
+        <p class="lede">Students practice budgeting, saving and investing, understanding interest, credit and debt, and making decisions about jobs, cars, housing, and other adult expenses.</p>
+        <ul class="check-list" style="margin-top:16px;">
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> Ongoing classroom instruction throughout the school year</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> 30–90 minute modules on focused topics</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> Entrepreneurship and workforce readiness experiences where available</li>
+        </ul>
+        <span class="pending">Needs approval: confirm ongoing vs. module offerings match what you deliver today</span>
       </div>
-      <div class="program-card" data-category="middle">
-        <div class="program-media m2">⚖️</div>
-        <div class="program-body">
-          <span class="program-tag">Middle School</span>
-          <h3>Assets &amp; Liabilities</h3>
-          <p>A hands-on workshop where students sort real-life items into assets and liabilities and build a mini balance sheet.</p>
-          <div class="program-meta"><span>⏱ 45 min</span><span>🎯 Grades 6-8</span></div>
+      <div class="split-art"><img src="assets/photos/classroom-lesson.webp" alt="Students raising their hands during a Kash Kids lesson"></div>
+    </div>
+
+    <!-- Family engagement -->
+    <div class="program-block split reveal" id="family">
+      <div>
+        <span class="grade-tag">Families</span>
+        <h2>Family engagement</h2>
+        <p class="lede">We help families continue money conversations beyond the classroom through family activities, parent resources, and opportunities to learn together.</p>
+        <div class="hero-actions" style="margin-top:20px;">
+          <a href="contact.html?topic=family-session" class="btn btn-primary">Request a Family Session</a>
+          <a href="resources.html#parent-list" class="btn btn-ghost">Parent Resources</a>
         </div>
-        <div style="padding:0 26px 26px;"><a href="contact.html" class="btn btn-ghost btn-block btn-sm">Book for My School</a></div>
       </div>
-      <div class="program-card" data-category="high">
-        <div class="program-media m3">📈</div>
-        <div class="program-body">
-          <span class="program-tag">High School</span>
-          <h3>Investing Simulator</h3>
-          <p>Students manage a virtual portfolio over a semester, learning risk, diversification, and compound growth.</p>
-          <div class="program-meta"><span>⏱ Semester</span><span>🎯 Grades 9-12</span></div>
-        </div>
-        <div style="padding:0 26px 26px;"><a href="contact.html" class="btn btn-ghost btn-block btn-sm">Book for My School</a></div>
+      <div data-video-block>
+        <div class="video" data-video="family" data-title="Kash Kids family engagement"></div>
+        <p class="video-caption">Kash Kids family engagement</p>
       </div>
-      <div class="program-card" data-category="high">
-        <div class="program-media m4">💳</div>
-        <div class="program-body">
-          <span class="program-tag">High School</span>
-          <h3>Credit &amp; Debt 101</h3>
-          <p>A practical crash course on credit scores, interest, loans, and how to avoid common debt traps.</p>
-          <div class="program-meta"><span>⏱ 60 min</span><span>🎯 Grades 9-12</span></div>
+    </div>
+
+    <!-- MMIT -->
+    <div class="program-block reveal" id="mmit">
+      <div class="cta-banner" style="background:linear-gradient(120deg,#a06d00,var(--gold-500));">
+        <div>
+          <span class="eyebrow on-dark" style="color:#fff;">Money Makers in Training</span>
+          <h2 style="color:var(--navy-900);">Hands-on experiences that connect money to work and life</h2>
+          <p style="color:var(--navy-900);">Money Makers in Training connects financial learning with hands-on experiences and community participation.</p>
         </div>
-        <div style="padding:0 26px 26px;"><a href="contact.html" class="btn btn-ghost btn-block btn-sm">Book for My School</a></div>
-      </div>
-      <div class="program-card" data-category="elementary">
-        <div class="program-media m1" style="background:linear-gradient(135deg,#3f6ea5,#20406b);">🐷</div>
-        <div class="program-body">
-          <span class="program-tag">Elementary</span>
-          <h3>Saving Superheroes</h3>
-          <p>A gamified savings challenge that teaches goal-setting using piggy banks and reward charts.</p>
-          <div class="program-meta"><span>⏱ 30 min</span><span>🎯 Grades K-5</span></div>
+        <div class="cta-actions">
+          <a href="money-makers.html#register" class="btn btn-secondary btn-lg"><span data-mmit-cta>Register Your School</span></a>
+          <a href="money-makers.html" class="btn btn-ghost btn-lg" style="border-color:var(--navy-900);">Learn More</a>
         </div>
-        <div style="padding:0 26px 26px;"><a href="contact.html" class="btn btn-ghost btn-block btn-sm">Book for My School</a></div>
-      </div>
-      <div class="program-card" data-category="middle">
-        <div class="program-media m2" style="background:linear-gradient(135deg,#a06d00,var(--gold-500));">🥽</div>
-        <div class="program-body">
-          <span class="program-tag">Middle School · AR/VR</span>
-          <h3>Virtual Marketplace</h3>
-          <p>An AR experience where students run a virtual shop — pricing goods, managing inventory, and tracking profit.</p>
-          <div class="program-meta"><span>⏱ 40 min</span><span>🎯 Grades 6-8</span></div>
-        </div>
-        <div style="padding:0 26px 26px;"><a href="contact.html" class="btn btn-ghost btn-block btn-sm">Book for My School</a></div>
-      </div>
-      <div class="program-card" data-category="high">
-        <div class="program-media m3" style="background:linear-gradient(135deg,var(--coral-600),var(--coral-500));">🎓</div>
-        <div class="program-body">
-          <span class="program-tag">High School</span>
-          <h3>Life After Graduation</h3>
-          <p>Covers taxes, rent, student loans, and building a real monthly budget before students leave home.</p>
-          <div class="program-meta"><span>⏱ 60 min</span><span>🎯 Grades 11-12</span></div>
-        </div>
-        <div style="padding:0 26px 26px;"><a href="contact.html" class="btn btn-ghost btn-block btn-sm">Book for My School</a></div>
-      </div>
-      <div class="program-card" data-category="elementary">
-        <div class="program-media m4" style="background:linear-gradient(135deg,var(--green-700),var(--green-500));">📖</div>
-        <div class="program-body">
-          <span class="program-tag">Elementary · Story-based</span>
-          <h3>The Money Tree Storybook</h3>
-          <p>An illustrated read-along that introduces earning, saving, and giving through relatable characters.</p>
-          <div class="program-meta"><span>⏱ 15 min</span><span>🎯 Grades K-3</span></div>
-        </div>
-        <div style="padding:0 26px 26px;"><a href="contact.html" class="btn btn-ghost btn-block btn-sm">Book for My School</a></div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- Access and booking -->
 <section class="section-pad" style="background:var(--paper-soft)">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">How it works</span>
-      <h2>Bringing Kash Kids to your school or group</h2>
+      <span class="eyebrow">Program access</span>
+      <h2>Bringing Kash Kids to your school or organization</h2>
+      <p class="lede center-col">Programs are supported through school and community partnerships, contracts, grants, and sponsorships. Contact us to discuss availability and funding options for your school or organization.</p>
     </div>
-    <div class="grid grid-4 reveal-stagger">
-      <div class="card text-center">
-        <div class="badge-num" style="margin:0 auto 14px;">1</div>
-        <h3>Reach out</h3>
-        <p>Tell us about your school, group, or classroom size via our contact form.</p>
-      </div>
-      <div class="card text-center">
-        <div class="badge-num" style="margin:0 auto 14px;">2</div>
-        <h3>We match a program</h3>
-        <p>We recommend the right lessons and format for your students' age group.</p>
-      </div>
-      <div class="card text-center">
-        <div class="badge-num" style="margin:0 auto 14px;">3</div>
-        <h3>We deliver, free</h3>
-        <p>Our team runs the workshop in-person or virtually — no cost to your school.</p>
-      </div>
-      <div class="card text-center">
-        <div class="badge-num" style="margin:0 auto 14px;">4</div>
-        <h3>Kids keep learning</h3>
-        <p>Students get take-home activities and access to online lessons to keep building skills.</p>
-      </div>
-    </div>
+    <ol class="steps reveal-stagger">
+      <li><b>Tell us about your students</b><span>Share your grade levels, group size, and goals.</span></li>
+      <li><b>Discuss the program and funding</b><span>We'll talk through the right format and funding arrangement.</span></li>
+      <li><b>Confirm dates and delivery</b><span>We schedule sessions that fit your calendar.</span></li>
+      <li><b>Begin learning</b><span>Students start practicing real money skills.</span></li>
+    </ol>
   </div>
 </section>
 
-<section class="section-pad">
-  <div class="container">
-    <div class="cta-banner reveal">
-      <div>
-        <span class="eyebrow on-dark">Ready to bring us in?</span>
-        <h2>Book a program for your school today</h2>
-        <p>It's free for schools and community organizations — made possible by our sponsors.</p>
-      </div>
-      <div class="cta-actions">
-        <a href="contact.html" class="btn btn-gold btn-lg">Book a Program</a>
+<!-- Request form -->
+<section class="section-pad" id="request">
+  <div class="container" style="max-width:820px;">
+    <div class="form-card reveal">
+      <span class="eyebrow">Request a Program</span>
+      <h2>Tell us about your students</h2>
+      <p style="color:var(--ink-soft);">Submitting this form starts a conversation. It does not confirm a booking.</p>
+      <form data-form="schoolInquiry" data-success="#request-success">
+        <input type="hidden" name="_subject" value="Kash Kids program request">
+        <div class="form-status" aria-live="polite"></div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="r-org">School or organization</label>
+            <input type="text" id="r-org" name="organization" required autocomplete="organization">
+          </div>
+          <div class="form-field">
+            <label for="r-name">Your name</label>
+            <input type="text" id="r-name" name="contact_name" required autocomplete="name">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="r-role">Your role</label>
+            <input type="text" id="r-role" name="role" placeholder="e.g. Principal, teacher, program director">
+          </div>
+          <div class="form-field">
+            <label for="r-email">Work email</label>
+            <input type="email" id="r-email" name="email" required autocomplete="email">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="r-phone">Phone</label>
+            <input type="tel" id="r-phone" name="phone" autocomplete="tel">
+          </div>
+          <div class="form-field">
+            <label for="r-count">About how many students?</label>
+            <input type="number" id="r-count" name="student_count" min="1" inputmode="numeric">
+          </div>
+        </div>
+        <fieldset class="form-field">
+          <legend>Grade levels</legend>
+          <div class="check-grid">
+            <label><input type="checkbox" name="grades" value="K-2"> K–2</label>
+            <label><input type="checkbox" name="grades" value="3-5"> 3–5</label>
+            <label><input type="checkbox" name="grades" value="6-8"> 6–8</label>
+            <label><input type="checkbox" name="grades" value="9-12"> 9–12</label>
+          </div>
+        </fieldset>
+        <fieldset class="form-field">
+          <legend>Interested in</legend>
+          <div class="check-grid">
+            <label><input type="checkbox" name="interest" value="Ongoing classroom instruction"> Ongoing instruction</label>
+            <label><input type="checkbox" name="interest" value="Modules"> 30–90 minute modules</label>
+            <label><input type="checkbox" name="interest" value="Family engagement"> Family engagement</label>
+            <label><input type="checkbox" name="interest" value="Money Makers in Training"> Money Makers in Training</label>
+          </div>
+        </fieldset>
+        <div class="form-field">
+          <label for="r-msg">Anything else we should know?</label>
+          <textarea id="r-msg" name="message" rows="4" placeholder="Timing, goals, funding questions…"></textarea>
+        </div>
+        <p class="form-note" style="margin:0 0 16px;">Please don't include student names or student records.</p>
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Request a Program</button>
+      </form>
+      <div class="form-success" id="request-success" tabindex="-1" role="status">
+        ✅ Thank you! We received your request and will follow up to discuss your students, availability, and funding options.
       </div>
     </div>
   </div>
@@ -201,49 +243,47 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <a href="index.html" class="brand"><img src="assets/logo.webp" alt="Kash Kids" class="logo-img logo-img-footer"></a>
-        <p style="margin-top:14px;max-width:280px;">A nonprofit teaching K-12 students the money skills school doesn't — so they can avoid debt, build wealth, and make smart decisions for life.</p>
-        <div class="footer-social">
-          <a href="#" aria-label="Facebook">f</a>
-          <a href="#" aria-label="Instagram">◎</a>
-          <a href="#" aria-label="TikTok">♪</a>
-          <a href="#" aria-label="Pinterest">P</a>
-        </div>
+        <a href="index.html" class="brand"><img src="assets/logo.webp" alt="Kash Kids home" class="logo-img logo-img-footer"></a>
+        <p style="margin-top:14px;max-width:290px;">Kash Kids helps K–12 students build practical money skills through stories, games, and hands-on experiences.</p>
+        <div class="footer-social" data-social></div>
       </div>
       <div>
         <h4>Explore</h4>
         <ul class="footer-links">
-          <li><a href="about.html">About Us</a></li>
+          <li><a href="about.html">About Kash Kids</a></li>
           <li><a href="programs.html">Programs</a></li>
-          <li><a href="events.html">Events</a></li>
-          <li><a href="blog.html">Blog</a></li>
+          <li><a href="lesson.html">Try a Lesson</a></li>
+          <li><a href="money-makers.html">Money Makers in Training</a></li>
+          <li><a href="resources.html">Stories &amp; Resources</a></li>
         </ul>
       </div>
       <div>
         <h4>Get Involved</h4>
         <ul class="footer-links">
+          <li><a href="programs.html#request">Bring Kash Kids to Your School</a></li>
           <li><a href="donate.html">Donate</a></li>
-          <li><a href="donate.html">Sponsor a Child</a></li>
-          <li><a href="contact.html">Volunteer</a></li>
-          <li><a href="contact.html">Partner With Us</a></li>
+          <li><a href="get-involved.html">Partner or Volunteer</a></li>
+          <li><a data-link="prindleHouse">Shop at Prindle House</a></li>
         </ul>
       </div>
       <div>
-        <h4>Stay in the loop</h4>
-        <p>Get money tips &amp; event updates monthly.</p>
-        <form class="newsletter-form">
-          <input type="email" required placeholder="Your email">
-          <button type="submit" class="btn btn-gold btn-sm">Join</button>
-        </form>
+        <h4>Contact</h4>
+        <ul class="footer-links footer-contact">
+          <li data-contact="email"></li>
+          <li data-contact-row><span data-contact="phone"></span></li>
+          <li>Jacksonville, Florida</li>
+        </ul>
+        <a href="resources.html#parent-list" class="btn btn-gold btn-sm" style="margin-top:8px;">Join Our Parent Email List</a>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© <span data-year></span> Kash Kids. All rights reserved.</span>
-      <span>Made with 💚 for financially confident kids.</span>
+      <span>Made with 💚 in Jacksonville for financially confident kids.</span>
     </div>
   </div>
 </footer>
 
+<script src="js/site-config.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
