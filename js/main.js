@@ -67,8 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* Social icons — only accounts that are filled in */
-  const socialLabels = { facebook: 'Facebook', instagram: 'Instagram', linkedin: 'LinkedIn', youtube: 'YouTube', tiktok: 'TikTok' };
-  const socialGlyphs = { facebook: 'f', instagram: '◎', linkedin: 'in', youtube: '▶', tiktok: '♪' };
+  const socialLabels = { facebook: 'Facebook', instagram: 'Instagram', linkedin: 'LinkedIn', x: 'X', youtube: 'YouTube', tiktok: 'TikTok' };
+  const socialGlyphs = { facebook: 'f', instagram: '◎', linkedin: 'in', x: '𝕏', youtube: '▶', tiktok: '♪' };
   document.querySelectorAll('[data-social]').forEach(wrap => {
     const entries = Object.entries(KK.social || {}).filter(([, url]) => url);
     wrap.innerHTML = entries.map(([k, url]) =>
