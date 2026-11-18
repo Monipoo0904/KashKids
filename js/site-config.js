@@ -8,12 +8,12 @@
    - Leave a value as '' (empty) until it is approved. Empty links are hidden
      on the live site, so nothing ever points nowhere.
    - Keep the quotes and commas exactly as shown.
-   - Set `preview: false` only when Twyla has approved the site for launch.
-     While `preview` is true, yellow "Needs approval" notes are shown.
+   - Set `preview: false` once the approved copy and live links are ready.
+     This removes the preview notes and routes unconnected forms to email.
    ========================================================================== */
 
 window.KK = {
-  preview: true,
+   preview: false,
 
   /* Public links (paste the full https:// address) */
   links: {
@@ -21,14 +21,14 @@ window.KK = {
     zeffy: 'https://www.zeffy.com/en-US/donation-form/sponsor-a-child-change-a-life-4',  // Zeffy public donation form link
     zeffyEmbed: 'https://www.zeffy.com/embed/donation-form/sponsor-a-child-change-a-life-4',  // Zeffy embed link (shows the form on the Donate page)
     sponsorshipSheet: 'https://form.jotform.com/262508545876065',  // Money Makers in Training Business Partner Interest Form (Jotform)
-    googleReviews: '',     // Google business profile reviews page
+    googleReviews: 'https://ph.search.yahoo.com/search?fr=mcafee&type=E210PH1641G91998&p=kash+kids',     // Google business profile / review link shared by Twyla
   },
 
   /* Where form submissions go (e.g. a Formspree endpoint).
      Until set, forms show a preview notice and do not submit. */
   forms: {
     schoolInquiry: '',
-    mmitRegistration: '',
+    mmitRegistration: 'https://form.jotform.com/262875332700052',
     contact: '',
   },
 
@@ -48,7 +48,7 @@ window.KK = {
 
   /* Social accounts — only filled-in accounts show an icon */
   social: {
-    facebook: 'https://www.facebook.com/ckashkids',
+    facebook: 'https://web.facebook.com/ckashkids',
     instagram: 'https://www.instagram.com/kashkidss/',
     linkedin: '',          // Twyla sent the page title only — paste the company page URL
     x: 'https://x.com/kashkidsuaoc',
@@ -58,9 +58,9 @@ window.KK = {
 
   /* YouTube links for videos (any normal YouTube URL works) */
   videos: {
-    about: '',             // About Kash Kids
-    family: '',            // Family engagement
-    mmit: 'https://youtube.com/shorts/wmWieg26gEk',  // Money Makers in Training
+    about: 'https://www.youtube.com/results?search_query=Kash+Kids',             // About Kash Kids
+    family: 'https://www.youtube.com/playlist?list=PLawp7ZTnz8vk',            // Family engagement
+    mmit: 'https://youtube.com/shorts/wmWieg26gEk?feature=share',  // Money Makers in Training
   },
 
   /* Money Makers in Training
@@ -72,9 +72,13 @@ window.KK = {
     // coordinated with DCPS and home schools. Add time, location, grades,
     // capacity and spotsLeft once confirmed.
     sessions: [
+      // Dates from Twyla (Nov 2026). Past dates drop off automatically.
       { id: '2026-12-01', date: '2026-12-01' },
+      { id: '2026-12-04', date: '2026-12-04' },
+      { id: '2026-12-14', date: '2026-12-14' },
       { id: '2026-12-15', date: '2026-12-15' },
       { id: '2026-12-16', date: '2026-12-16' },
+      { id: '2026-12-17', date: '2026-12-17' },
       // { id: 'spring-1', date: '2027-03-06', time: '9:00 AM – 12:00 PM',
       //   location: '1Bridge Connect, Jacksonville', grades: '6–12',
       //   capacity: 120, spotsLeft: 120 },
@@ -84,6 +88,10 @@ window.KK = {
   /* Events. Past events move to "Past events" automatically after their date.
      To remove one completely, delete its { ... } block. */
   events: [
+    { date: '2026-12-16', title: 'Table Talk Luncheon at Sandalwood High School', type: 'Money Makers in Training',
+      location: 'Sandalwood High School', time: '10:00 – 11:00 AM', link: '' },
+    { date: '2026-12-17', title: 'Table Talk Luncheon at Sandalwood High School', type: 'Money Makers in Training',
+      location: 'Sandalwood High School', time: '10:00 – 11:00 AM', link: '' },
     // { date: '2026-11-08', title: 'Family Money Night', type: 'Family',
     //   location: 'Jacksonville, FL', time: '6:00 PM', link: '' },
   ],

@@ -82,28 +82,50 @@ document.addEventListener('DOMContentLoaded', () => {
     const m = String(url || '').match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{11})/);
     return m ? m[1] : (/^[\w-]{11}$/.test(url || '') ? url : '');
   };
+  const youtubeEmbedUrl = (url) => {
+    const clean = String(url || '').trim();
+    if (!clean) return '';
+
+    const directId = youtubeId(clean);
+    if (directId) return `https://www.youtube-nocookie.com/embed/${directId}?autoplay=1&cc_load_policy=1&rel=0`;
+
+    const playlistMatch = clean.match(/[?&]list=([^&]+)/);
+    if (playlistMatch) return `https://www.youtube-nocookie.com/embed/videoseries?list=${encodeURIComponent(playlistMatch[1])}&autoplay=1&cc_load_policy=1&rel=0`;
+
+    const searchMatch = clean.match(/[?&]search_query=([^&]+)/);
+    if (searchMatch) return `https://www.youtube-nocookie.com/embed/videoseries?listType=search&list=${encodeURIComponent(decodeURIComponent(searchMatch[1]).replace(/\+/g, ' '))}&autoplay=1&cc_load_policy=1&rel=0`;
+
+    return '';
+  };
   document.querySelectorAll('[data-video]').forEach(el => {
-    const id = youtubeId((KK.videos || {})[el.dataset.video]);
+    const url = (KK.videos || {})[el.dataset.video];
+    const id = youtubeId(url);
+    const embedUrl = youtubeEmbedUrl(url);
     const title = el.dataset.title || 'Kash Kids video';
-    if (!id) {
+    if (!embedUrl) {
       if (preview) el.innerHTML = `<div class="video-empty"><span class="pending">Needs video link: ${esc(title)}</span></div>`;
       else (el.closest('[data-video-block]') || el).hidden = true;
       return;
     }
+    const poster = id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : 'https://i.ytimg.com/vi/ScMzIvxBSi4/hqdefault.jpg';
     el.innerHTML = `
       <button type="button" class="video-poster" aria-label="Play video: ${esc(title)}">
-        <img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy">
+        <img src="${poster}" alt="" loading="lazy">
         <span class="video-play" aria-hidden="true"></span>
       </button>`;
     el.querySelector('button').addEventListener('click', () => {
-      el.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&cc_load_policy=1&rel=0"
+      el.innerHTML = `<iframe src="${embedUrl}"
         title="${esc(title)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
     });
   });
 
   /* Money Makers in Training status */
   const mmit = KK.mmit || {};
-  const sessions = (mmit.sessions || []).filter(s => s.spotsLeft === undefined || s.spotsLeft > 0);
+  const startOfToday = () => { const d = new Date(); d.setHours(0, 0, 0, 0); return d; };
+  const allSessions = (mmit.sessions || []).filter(s => s.date);
+  // Only future (or today's) sessions with open spots can be registered for.
+  const sessions = allSessions.filter(s =>
+    parseDate(s.date) >= startOfToday() && (s.spotsLeft === undefined || s.spotsLeft > 0));
   const mmitOpen = mmit.status === 'open' && sessions.length > 0;
   document.querySelectorAll('[data-mmit-label]').forEach(el => {
     el.textContent = mmitOpen ? 'School registration is open' : 'Join the interest list for upcoming sessions';
@@ -142,10 +164,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const dt = parseDate(d);
     return `<span class="num">${dt.getDate()}</span><span class="mon">${dt.toLocaleDateString('en-US', { month: 'short' })}</span>`;
   }
-  const today = new Date(); today.setHours(0, 0, 0, 0);
-  const events = (KK.events || []).slice().sort((a, b) => parseDate(a.date) - parseDate(b.date));
+  const today = startOfToday();
+  // Money Makers in Training sessions are listed as events automatically.
+  const mmitEvents = allSessions.map(s => ({
+    date: s.date, title: 'Money Makers in Training', type: 'Field Trip',
+    time: s.time, location: s.location, link: 'money-makers.html#register',
+  }));
+  const events = [...(KK.events || []).filter(e => e.date), ...mmitEvents]
+    .sort((a, b) => parseDate(a.date) - parseDate(b.date));
   const upcoming = events.filter(e => parseDate(e.date) >= today);
   const past = events.filter(e => parseDate(e.date) < today).reverse();
+  const linkTarget = (url) => /^https?:/i.test(url) ? ' target="_blank" rel="noopener"' : '';
   const eventCard = (e) => `
     <div class="event-card">
       <div class="event-date">${dateBadge(e.date)}</div>
@@ -157,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
           ${e.time ? `<span>🕘 ${esc(e.time)}</span>` : ''}
         </div>
       </div>
-      ${e.link ? `<a href="${esc(e.link)}" class="btn btn-ghost btn-sm" target="_blank" rel="noopener">Details</a>` : ''}
+      ${e.link ? `<a href="${esc(e.link)}" class="btn btn-ghost btn-sm"${linkTarget(e.link)}>Details</a>` : ''}
     </div>`;
   document.querySelectorAll('[data-events]').forEach(wrap => {
     const which = wrap.dataset.events === 'past' ? past : upcoming;
@@ -166,6 +195,108 @@ document.addEventListener('DOMContentLoaded', () => {
       `<p class="empty-note">${wrap.dataset.events === 'past' ? 'Past events will appear here.' : 'New events are announced here and on our parent email list.'}</p>`;
     if (wrap.dataset.events === 'past') (wrap.closest('[data-past-block]') || wrap).hidden = past.length === 0;
   });
+
+  /* Homepage monthly event calendar — always opens on the current month and
+     re-renders itself at midnight so "today" stays correct. */
+  const calendarEvents = events;
+
+  const renderCalendar = (wrap, offset) => {
+    const now = startOfToday();
+    const start = new Date(now.getFullYear(), now.getMonth() + offset, 1);
+    const end = new Date(start.getFullYear(), start.getMonth() + 1, 0);
+    const startsOn = start.getDay();
+    const daysInMonth = end.getDate();
+    const isThisMonth = start.getFullYear() === now.getFullYear() && start.getMonth() === now.getMonth();
+
+    const monthEvents = calendarEvents.filter(e => {
+      const dt = parseDate(e.date);
+      return dt.getFullYear() === start.getFullYear() && dt.getMonth() === start.getMonth();
+    });
+
+    const byDay = new Map();
+    monthEvents.forEach(e => {
+      const day = parseDate(e.date).getDate();
+      if (!byDay.has(day)) byDay.set(day, []);
+      byDay.get(day).push(e);
+    });
+
+    const monthName = start.toLocaleDateString('en-US', { month: 'long' });
+    const dow = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const cells = [];
+    for (let i = 0; i < startsOn; i += 1) cells.push('<div class="calendar-day is-empty" aria-hidden="true"></div>');
+    for (let day = 1; day <= daysInMonth; day += 1) {
+      const dayEvents = byDay.get(day) || [];
+      const isToday = isThisMonth && day === now.getDate();
+      const isPast = new Date(start.getFullYear(), start.getMonth(), day) < now;
+      const cls = ['calendar-day', dayEvents.length && 'has-event', isToday && 'is-today', isPast && 'is-past'].filter(Boolean).join(' ');
+      const label = `${monthName} ${day}${isToday ? ', today' : ''}${dayEvents.length ? `: ${dayEvents.map(e => e.title).join(', ')}` : ''}`;
+      cells.push(`<div class="${cls}" aria-label="${esc(label)}" title="${esc(label)}"${isToday ? ' aria-current="date"' : ''}>${day}${dayEvents.length ? '<span class="dot" aria-hidden="true"></span>' : ''}</div>`);
+    }
+
+    const item = (e) => `
+        <div class="calendar-item${parseDate(e.date) < now ? ' is-past' : ''}">
+          <span>•</span>
+          <div><b>${esc(formatDate(e.date))}</b> — ${esc(e.title)}${e.time ? ` · ${esc(e.time)}` : ''}${e.location ? ` · ${esc(e.location)}` : ''}${e.link ? ` (<a href="${esc(e.link)}"${linkTarget(e.link)}>details</a>)` : ''}</div>
+        </div>`;
+
+    // If nothing else is left this month, point people at what's next.
+    const upcomingInMonth = monthEvents.filter(e => parseDate(e.date) >= now);
+    const nextUp = calendarEvents.filter(e => parseDate(e.date) >= now && parseDate(e.date) > end).slice(0, 3);
+    let listMarkup;
+    if (monthEvents.length) {
+      listMarkup = monthEvents.slice(0, 6).map(item).join('');
+      if (isThisMonth && !upcomingInMonth.length && nextUp.length) {
+        listMarkup += `<p class="calendar-next-label">Coming up</p>${nextUp.map(item).join('')}`;
+      }
+    } else if (offset >= 0 && nextUp.length) {
+      listMarkup = `<p class="empty-note">No events in ${esc(monthName)}.</p><p class="calendar-next-label">Coming up</p>${nextUp.map(item).join('')}`;
+    } else {
+      listMarkup = `<p class="empty-note">No events listed in ${esc(monthName)}.</p>`;
+    }
+
+    wrap.innerHTML = `
+      <div class="calendar-head">
+        <div class="calendar-nav-group">
+          <button type="button" class="calendar-nav" data-calendar-nav="-1" aria-label="Show previous month">←</button>
+          <button type="button" class="calendar-today" data-calendar-today>Today</button>
+        </div>
+        <h3 class="calendar-month" aria-live="polite">${esc(start.toLocaleDateString('en-US', { month: 'long', year: 'numeric' }))}</h3>
+        <button type="button" class="calendar-nav" data-calendar-nav="1" aria-label="Show next month">→</button>
+      </div>
+      <span class="calendar-key"><span class="key-swatch key-event"></span> Event <span class="key-swatch key-today"></span> Today, ${esc(now.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }))}</span>
+      <div class="calendar-grid">
+        ${dow.map(d => `<div class="calendar-dow">${d}</div>`).join('')}
+        ${cells.join('')}
+      </div>
+      <div class="calendar-list">${listMarkup}</div>`;
+  };
+
+  const calendars = [...document.querySelectorAll('[data-events-calendar]')];
+  calendars.forEach(wrap => {
+    let offset = parseInt(wrap.dataset.monthOffset || '0', 10) || 0;
+    renderCalendar(wrap, offset);
+
+    wrap.addEventListener('click', (e) => {
+      const todayBtn = e.target.closest('[data-calendar-today]');
+      const btn = e.target.closest('[data-calendar-nav]');
+      if (!todayBtn && !btn) return;
+      offset = todayBtn ? 0 : offset + (parseInt(btn.dataset.calendarNav || '0', 10) || 0);
+      wrap.dataset.monthOffset = String(offset);
+      renderCalendar(wrap, offset);
+    });
+  });
+
+  // Keep "today" current if the page stays open past midnight.
+  if (calendars.length) {
+    const scheduleMidnight = () => {
+      const next = startOfToday(); next.setDate(next.getDate() + 1);
+      setTimeout(() => {
+        calendars.forEach(wrap => renderCalendar(wrap, parseInt(wrap.dataset.monthOffset || '0', 10) || 0));
+        scheduleMidnight();
+      }, next - new Date() + 1000);
+    };
+    scheduleMidnight();
+  }
 
   /* Community reviews from Google */
   const reviews = KK.reviews || [];
