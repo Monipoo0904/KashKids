@@ -42,6 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
       a.href = url;
       a.target = '_blank';
       a.rel = 'noopener';
+    } else if (a.getAttribute('href')) {
+      // No link configured: keep the element's own href as a fallback (e.g. Donate → donate.html).
     } else if (preview) {
       a.removeAttribute('href');
       a.classList.add('is-pending-link');
@@ -53,15 +55,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* Contact details */
   const contact = KK.contact || {};
+  // `email` may be one address or a list; the first is the main inbox.
+  const emails = [].concat(contact.email || []).filter(Boolean);
+  const mainEmail = emails[0] || '';
   document.querySelectorAll('[data-contact]').forEach(el => {
     const key = el.dataset.contact;
-    const val = contact[key];
+    const val = key === 'email' ? (emails.length ? emails : '') : contact[key];
     if (!val) {
       if (preview) el.innerHTML = `<span class="pending">Needs approval: ${esc(key)}</span>`;
       else (el.closest('[data-contact-row]') || el).hidden = true;
       return;
     }
-    if (key === 'email') el.innerHTML = `<a href="mailto:${esc(val)}">${esc(val)}</a>`;
+    if (key === 'email') el.innerHTML = emails.map(m => `<a href="mailto:${esc(m)}">${esc(m)}</a>`).join('<br>');
     else if (key === 'phone') el.innerHTML = `<a href="tel:${esc(val.replace(/[^\d+]/g, ''))}">${esc(val)}</a>`;
     else el.textContent = val;
   });
@@ -365,9 +370,15 @@ document.addEventListener('DOMContentLoaded', () => {
   /* Zeffy embed */
   document.querySelectorAll('[data-zeffy]').forEach(wrap => {
     const src = (KK.links || {}).zeffyEmbed;
-    if (src) wrap.innerHTML = `<iframe src="${esc(src)}" title="Donate to Kash Kids with Zeffy" allowpaymentrequest loading="lazy"></iframe>`;
+    if (src) wrap.innerHTML = `<iframe src="${esc(src)}" title="Donate to Kash Kids with Zeffy" allowpaymentrequest></iframe>`;
     else wrap.hidden = true;
   });
+  // On the Donate page, go straight to the form (even without #give in the link).
+  const giveSection = document.getElementById('give');
+  if (giveSection && !location.hash) {
+    giveSection.scrollIntoView({ behavior: 'instant', block: 'start' });
+    history.replaceState(null, '', '#give');
+  }
 
   /* Forms: <form data-form="schoolInquiry" data-success="#id">. Posts to the endpoint in site-config. */
   document.querySelectorAll('form[data-form]').forEach(form => {
@@ -380,7 +391,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (preview && status) status.innerHTML = '<span class="pending">Preview: this form is not connected yet, so nothing is sent.</span>';
       else if (!preview) {
         // Never show an unconnected form on the live site — point people to email instead.
-        form.outerHTML = `<p class="lede" style="max-width:100%;">Email <a href="mailto:${esc(contact.email)}">${esc(contact.email)}</a> and we'll be in touch.</p>`;
+        form.outerHTML = `<p class="lede" style="max-width:100%;">Email <a href="mailto:${esc(mainEmail)}">${esc(mainEmail)}</a> and we'll be in touch.</p>`;
         return;
       }
     }
@@ -396,7 +407,7 @@ document.addEventListener('DOMContentLoaded', () => {
         form.hidden = true;
         if (success) { success.classList.add('show'); success.focus(); }
       } catch (err) {
-        if (status) status.textContent = `Something went wrong. Please try again or email ${contact.email}.`;
+        if (status) status.textContent = `Something went wrong. Please try again or email ${mainEmail}.`;
         btn.disabled = false;
       }
     });

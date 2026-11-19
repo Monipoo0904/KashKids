@@ -40,7 +40,8 @@ window.KK = {
   /* Contact details. Inquiries and registrations go to info@kashkids.org —
      use it when setting up the form endpoints above. */
   contact: {
-    email: 'twyla@kashkids.org',
+    // Shown on every page. The first address is also used when a form isn't connected.
+    email: 'info@kashkids.org',
     phone: '(866) 877-4635',  // approved public phone number
     location: 'Jacksonville, Florida',
     serviceArea: '',       // e.g. 'Schools and community organizations in Northeast Florida'

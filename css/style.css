@@ -210,7 +210,7 @@ section{position:relative;}
 .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px;}
 .hero-cal-link{display:inline-block;margin-top:18px;color:var(--green-400);font-weight:700;text-decoration:none;border-bottom:2px solid transparent;}
 .hero-cal-link:hover,.hero-cal-link:focus-visible{border-bottom-color:var(--green-400);}
-#calendar{scroll-margin-top:110px;}
+#calendar,#give{scroll-margin-top:110px;}
 .hero-stats{display:flex;gap:32px;margin-top:48px;flex-wrap:wrap;}
 .hero-stats .stat-num{font-family:var(--font-head);font-size:2rem;font-weight:800;color:var(--gold-400);}
 .hero-stats .stat-label{font-size:.85rem;color:rgba(255,255,255,.7);}
