@@ -102,6 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const id = youtubeId(url);
     const embedUrl = youtubeEmbedUrl(url);
     const title = el.dataset.title || 'Kash Kids video';
+    // YouTube Shorts are vertical — use a 9:16 frame so they aren't letterboxed.
+    el.classList.toggle('is-short', /youtube\.com\/shorts\//i.test(String(url || '')));
     if (!embedUrl) {
       if (preview) el.innerHTML = `<div class="video-empty"><span class="pending">Needs video link: ${esc(title)}</span></div>`;
       else (el.closest('[data-video-block]') || el).hidden = true;

@@ -614,6 +614,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 /* Videos — click to play */
 .video{position:relative;aspect-ratio:16/9;border-radius:var(--radius-lg);overflow:hidden;background:var(--navy-900);box-shadow:var(--shadow-md);}
 .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+.video.is-short{aspect-ratio:9/16;max-width:360px;margin-left:auto;margin-right:auto;}
 .video-poster{position:absolute;inset:0;border:0;padding:0;cursor:pointer;background:none;width:100%;}
 .video-poster img{width:100%;height:100%;object-fit:cover;}
 .video-play{position:absolute;left:50%;top:50%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;

@@ -17,7 +17,7 @@ window.KK = {
 
   /* Public links (paste the full https:// address) */
   links: {
-    prindleHouse: 'https://prindlehouse.com/books/',  // Prindle House storefront (no financial literacy collection page exists yet — swap in when it does)
+    prindleHouse: 'https://prindlehouse.com/financial-literacy/',  // Prindle House Financial Literacy collection
     zeffy: 'https://www.zeffy.com/en-US/donation-form/sponsor-a-child-change-a-life-4',  // Zeffy public donation form link
     zeffyEmbed: 'https://www.zeffy.com/embed/donation-form/sponsor-a-child-change-a-life-4',  // Zeffy embed link (shows the form on the Donate page)
     sponsorshipSheet: 'https://form.jotform.com/262508545876065',  // Money Makers in Training Business Partner Interest Form (Jotform)
@@ -58,9 +58,9 @@ window.KK = {
 
   /* YouTube links for videos (any normal YouTube URL works) */
   videos: {
-    about: 'https://www.youtube.com/results?search_query=Kash+Kids',             // About Kash Kids
+    about: 'https://www.youtube.com/watch?v=hORioNvr4xg',             // About Kash Kids
     family: 'https://www.youtube.com/playlist?list=PLawp7ZTnz8vk',            // Family engagement
-    mmit: 'https://youtube.com/shorts/wmWieg26gEk?feature=share',  // Money Makers in Training
+    mmit: 'https://youtube.com/shorts/wmWieg26gEk',  // Money Makers in Training
   },
 
   /* Money Makers in Training
