@@ -205,6 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const renderCalendar = (wrap, offset) => {
     const now = startOfToday();
+    const selected = wrap.dataset.selected || '';
     const start = new Date(now.getFullYear(), now.getMonth() + offset, 1);
     const end = new Date(start.getFullYear(), start.getMonth() + 1, 0);
     const startsOn = start.getDay();
@@ -233,14 +234,34 @@ document.addEventListener('DOMContentLoaded', () => {
       const isPast = new Date(start.getFullYear(), start.getMonth(), day) < now;
       const cls = ['calendar-day', dayEvents.length && 'has-event', isToday && 'is-today', isPast && 'is-past'].filter(Boolean).join(' ');
       const label = `${monthName} ${day}${isToday ? ', today' : ''}${dayEvents.length ? `: ${dayEvents.map(e => e.title).join(', ')}` : ''}`;
-      cells.push(`<div class="${cls}" aria-label="${esc(label)}" title="${esc(label)}"${isToday ? ' aria-current="date"' : ''}>${day}${dayEvents.length ? '<span class="dot" aria-hidden="true"></span>' : ''}</div>`);
+      const iso = `${start.getFullYear()}-${String(start.getMonth() + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+      const dot = dayEvents.length ? '<span class="dot" aria-hidden="true"></span>' : '';
+      const current = isToday ? ' aria-current="date"' : '';
+      if (dayEvents.length) {
+        // Event days are buttons: click to see that day's lineup below the grid.
+        const isSelected = selected === iso;
+        cells.push(`<button type="button" class="${cls}${isSelected ? ' is-selected' : ''}" data-calendar-date="${iso}" aria-pressed="${isSelected}" aria-label="${esc(label)}. Show events" title="${esc(label)}"${current}>${day}${dot}</button>`);
+      } else {
+        cells.push(`<div class="${cls}" aria-label="${esc(label)}"${current}>${day}</div>`);
+      }
     }
 
-    // Below the grid, show only the next upcoming event (from today), whatever month is shown.
+    // Below the grid: the selected day's lineup, or else just the next upcoming event.
+    const dayLineup = selected ? calendarEvents.filter(e => e.date === selected) : [];
     const next = calendarEvents.find(e => parseDate(e.date) >= now);
-    const listMarkup = next
-      ? `<p class="calendar-next-label">Next up</p>${eventCard(next)}`
-      : '<p class="empty-note">New events are announced here and on our parent email list.</p>';
+    let listMarkup;
+    if (dayLineup.length) {
+      listMarkup = `
+        <div class="calendar-list-head">
+          <p class="calendar-next-label">${esc(formatDate(selected))} · ${dayLineup.length} event${dayLineup.length > 1 ? 's' : ''}</p>
+          <button type="button" class="calendar-clear" data-calendar-clear>${next ? 'Back to next up' : 'Close'}</button>
+        </div>
+        ${dayLineup.map(eventCard).join('')}`;
+    } else if (next) {
+      listMarkup = `<p class="calendar-next-label">Next up</p>${eventCard(next)}<p class="calendar-hint">Tap a highlighted date to see its events.</p>`;
+    } else {
+      listMarkup = '<p class="empty-note">New events are announced here and on our parent email list.</p>';
+    }
 
     wrap.innerHTML = `
       <div class="calendar-head">
@@ -256,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ${dow.map(d => `<div class="calendar-dow">${d}</div>`).join('')}
         ${cells.join('')}
       </div>
-      <div class="calendar-list">${listMarkup}</div>`;
+      <div class="calendar-list" aria-live="polite">${listMarkup}</div>`;
   };
 
   const calendars = [...document.querySelectorAll('[data-events-calendar]')];
@@ -265,11 +286,30 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCalendar(wrap, offset);
 
     wrap.addEventListener('click', (e) => {
+      const dayBtn = e.target.closest('[data-calendar-date]');
+      if (dayBtn) {
+        const iso = dayBtn.dataset.calendarDate;
+        // Clicking the selected date again closes its lineup.
+        wrap.dataset.selected = wrap.dataset.selected === iso ? '' : iso;
+        renderCalendar(wrap, offset);
+        const again = wrap.querySelector(`[data-calendar-date="${iso}"]`);
+        if (again) again.focus();
+        return;
+      }
+      if (e.target.closest('[data-calendar-clear]')) {
+        const iso = wrap.dataset.selected;
+        wrap.dataset.selected = '';
+        renderCalendar(wrap, offset);
+        const back = wrap.querySelector(`[data-calendar-date="${iso}"]`);
+        if (back) back.focus();
+        return;
+      }
       const todayBtn = e.target.closest('[data-calendar-today]');
       const btn = e.target.closest('[data-calendar-nav]');
       if (!todayBtn && !btn) return;
       offset = todayBtn ? 0 : offset + (parseInt(btn.dataset.calendarNav || '0', 10) || 0);
       wrap.dataset.monthOffset = String(offset);
+      wrap.dataset.selected = '';
       renderCalendar(wrap, offset);
     });
   });
