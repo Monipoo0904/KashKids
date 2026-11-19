@@ -3,22 +3,26 @@
    ========================================================================== */
 
 :root{
-  /* Brand palette — energetic, saturated green + punchy coral/gold */
-  --green-900:#063d1f;
-  --green-700:#068a4d;
-  --green-600:#00b368;
-  --green-500:#22d17a;
-  --green-400:#5cf0a3;
-  --green-100:#e0fbef;
+  /* Brand palette — from the Kash Kids Brand Guide.
+     Brand colors: #89BF3D, #A7DB50, #C8F763 (greens) and #1166B2 (blue).
+     The brand greens are too light for text on white, so text uses the
+     darker greens (700/900); the bright greens are for fills and accents. */
+  --green-900:#2e4a0c;   /* deep green — text on light green */
+  --green-700:#4e7a17;   /* text-safe green on white (5.1:1) */
+  --green-600:#89BF3D;   /* brand green */
+  --green-500:#A7DB50;   /* brand green, light */
+  --green-400:#C8F763;   /* brand lime */
+  --green-100:#f1fbdf;
 
-  --navy-900:#0d1b2a;
-  --navy-700:#16324a;
+  --navy-900:#0b3f70;    /* deep brand blue — headings, dark sections */
+  --navy-700:#1166B2;    /* brand blue */
 
-  --gold-500:#ffb100;
-  --gold-400:#ffd60a;
-
-  --coral-500:#ff4d4d;
-  --coral-600:#e6303f;
+  /* Accent slots now map to brand colors */
+  --gold-500:#C8F763;    /* lime accent (on dark backgrounds / with dark text) */
+  --gold-400:#dbff8c;
+  --coral-500:#1166B2;   /* primary action = brand blue (5.9:1 with white) */
+  --coral-600:#0d528f;
+  --star:#f5b301;        /* review stars only */
 
   /* Semantic — decoupled from brand so correct/wrong always read as green/red */
   --success-500:#22c55e;
@@ -42,8 +46,8 @@
   --shadow-lg:0 24px 60px rgba(13,40,30,.16);
 
   --container:1180px;
-  --font-head:"Baloo 2", "Poppins", system-ui, sans-serif;
-  --font-body:"Inter", system-ui, -apple-system, sans-serif;
+  --font-head:"Poppins", system-ui, sans-serif;
+  --font-body:"Lato", system-ui, -apple-system, sans-serif;
 
   color-scheme: light;
 }
@@ -109,8 +113,8 @@ section{position:relative;}
   white-space:nowrap;
 }
 .btn:active{transform:translateY(1px) scale(.98);}
-.btn-primary{background:var(--coral-500);color:#fff;box-shadow:0 10px 24px rgba(240,71,47,.32);}
-.btn-primary:hover{background:var(--coral-600);transform:translateY(-2px);box-shadow:0 14px 30px rgba(240,71,47,.4);}
+.btn-primary{background:var(--coral-500);color:#fff;box-shadow:0 10px 24px rgba(17,102,178,.30);}
+.btn-primary:hover{background:var(--coral-600);transform:translateY(-2px);box-shadow:0 14px 30px rgba(17,102,178,.38);}
 .btn-secondary{background:var(--navy-900);color:#fff;}
 .btn-secondary:hover{background:var(--green-700);transform:translateY(-2px);}
 .btn-ghost{background:transparent;color:var(--navy-900);border-color:var(--line);}
@@ -118,6 +122,9 @@ section{position:relative;}
 .btn-ghost.on-dark{color:#fff;border-color:rgba(255,255,255,.35);}
 .btn-ghost.on-dark:hover{border-color:#fff;}
 .btn-gold{background:var(--gold-500);color:var(--navy-900);}
+/* On the blue hero, the primary action switches to brand lime so it stands out */
+.hero .btn-primary{background:var(--green-400);color:var(--navy-900);box-shadow:0 10px 24px rgba(0,0,0,.25);}
+.hero .btn-primary:hover{background:var(--gold-400);}
 .btn-gold:hover{background:var(--gold-400);transform:translateY(-2px);}
 .btn-lg{padding:18px 36px;font-size:1.1rem;}
 .btn-sm{padding:10px 20px;font-size:.9rem;}
@@ -136,7 +143,7 @@ section{position:relative;}
 }
 .brand{display:flex;align-items:center;gap:10px;font-family:var(--font-head);font-weight:800;font-size:1.35rem;color:var(--navy-900);}
 .brand .logo-mark{width:42px;height:42px;flex:none;}
-.brand .brand-kash{color:var(--green-600);}
+.brand .brand-kash{color:var(--green-700);}
 .brand .brand-kids{color:var(--coral-500);}
 .logo-img{height:38px;width:auto;display:block;}
 .logo-img-footer{height:46px;}
@@ -150,7 +157,7 @@ section{position:relative;}
 .nav-desktop a:hover, .nav-desktop a.active{background:var(--green-100);color:var(--green-700);}
 .header-cta{display:flex;align-items:center;gap:10px;}
 .nav-shop{font-weight:700;font-size:.9rem;color:var(--navy-900);padding:9px 12px;border-radius:var(--radius-pill);display:inline-flex;align-items:center;gap:6px;}
-.nav-shop:hover{background:#fff3d6;}
+.nav-shop:hover{background:var(--green-100);}
 .nav-toggle{
   display:none;background:none;border:none;cursor:pointer;padding:8px;
   flex-direction:column;gap:5px;
@@ -192,7 +199,7 @@ section{position:relative;}
 /* ---------- Hero ---------- */
 .hero{
   position:relative;overflow:hidden;
-  background:linear-gradient(160deg,var(--navy-900) 0%,var(--green-900) 55%,var(--green-700) 100%);
+  background:linear-gradient(160deg,var(--navy-900) 0%,var(--navy-700) 55%,var(--green-700) 100%);
   color:#fff;
   padding:80px 0 110px;
 }
@@ -218,7 +225,7 @@ section{position:relative;}
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
   color:var(--navy-900);text-align:center;padding:20px;
 }
-.coin-orbit .center-card .big{font-family:var(--font-head);font-size:2.4rem;font-weight:800;color:var(--green-600);}
+.coin-orbit .center-card .big{font-family:var(--font-head);font-size:2.4rem;font-weight:800;color:var(--green-700);}
 .floating-chip{
   position:absolute;background:#fff;border-radius:var(--radius-md);
   box-shadow:var(--shadow-md);padding:12px 16px;
@@ -270,15 +277,15 @@ section{position:relative;}
 .card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);}
 .card .icon-badge{
   width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;
-  background:var(--green-100);color:var(--green-600);margin-bottom:18px;
+  background:var(--green-100);color:var(--green-700);margin-bottom:18px;
 }
 .card h3{font-size:1.2rem;}
 .card p{color:var(--ink-soft);margin-bottom:0;}
 
 /* Value/feature cards with color variants */
-.card.c-gold .icon-badge{background:#fff3d6;color:#a06d00;}
-.card.c-coral .icon-badge{background:#ffe4e0;color:var(--coral-600);}
-.card.c-navy .icon-badge{background:#e6edf5;color:var(--navy-700);}
+.card.c-gold .icon-badge{background:var(--green-100);color:var(--green-700);}
+.card.c-coral .icon-badge{background:#e3eefa;color:var(--coral-600);}
+.card.c-navy .icon-badge{background:#e3eefa;color:var(--navy-700);}
 
 /* Program cards */
 .program-card{
@@ -293,8 +300,8 @@ section{position:relative;}
 }
 .program-media.m1{background:linear-gradient(135deg,var(--green-600),var(--green-400));}
 .program-media.m2{background:linear-gradient(135deg,var(--coral-600),var(--coral-500));}
-.program-media.m3{background:linear-gradient(135deg,#20406b,#3f6ea5);}
-.program-media.m4{background:linear-gradient(135deg,#a06d00,var(--gold-500));}
+.program-media.m3{background:linear-gradient(135deg,var(--navy-900),var(--navy-700));}
+.program-media.m4{background:linear-gradient(135deg,var(--green-700),var(--green-600));}
 .program-body{padding:26px;display:flex;flex-direction:column;gap:10px;flex:1;}
 .program-tag{
   align-self:flex-start;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
@@ -305,7 +312,7 @@ section{position:relative;}
 
 /* ---------- Testimonials ---------- */
 .testi-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px;box-shadow:var(--shadow-sm);}
-.testi-stars{color:var(--gold-500);letter-spacing:2px;margin-bottom:10px;font-size:1.1rem;}
+.testi-stars{color:var(--star);letter-spacing:2px;margin-bottom:10px;font-size:1.1rem;}
 .testi-quote{color:var(--ink-soft);font-style:italic;margin-bottom:20px;}
 .testi-person{display:flex;align-items:center;gap:12px;}
 .avatar{
@@ -327,7 +334,7 @@ section{position:relative;}
 
 /* ---------- CTA banner ---------- */
 .cta-banner{
-  background:linear-gradient(120deg,var(--green-700),var(--green-500));
+  background:linear-gradient(120deg,var(--green-900),var(--green-700));
   border-radius:var(--radius-lg);color:#fff;padding:56px;
   display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;
   position:relative;overflow:hidden;
@@ -403,7 +410,7 @@ section{position:relative;}
 .split.rev > *{direction:ltr;}
 .split-art{position:relative;}
 .check-list li{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px;color:var(--ink-soft);}
-.check-list svg{flex:none;margin-top:3px;color:var(--green-600);}
+.check-list svg{flex:none;margin-top:3px;color:var(--green-700);}
 
 .blob-panel{
   border-radius:var(--radius-lg);
@@ -413,7 +420,7 @@ section{position:relative;}
 }
 .blob-panel.bp1{background:linear-gradient(135deg,var(--green-600),var(--green-400));}
 .blob-panel.bp2{background:linear-gradient(135deg,var(--coral-600),var(--coral-500));}
-.blob-panel.bp3{background:linear-gradient(135deg,#20406b,#3f6ea5);}
+.blob-panel.bp3{background:linear-gradient(135deg,var(--navy-900),var(--navy-700));}
 
 /* ---------- Badges / pills ---------- */
 .pill-row{display:flex;flex-wrap:wrap;gap:10px;}
@@ -524,7 +531,7 @@ section{position:relative;}
   display:flex;justify-content:space-between;align-items:center;font-family:var(--font-head);
   font-weight:700;font-size:1.05rem;color:var(--navy-900);gap:16px;
 }
-.faq-q .plus{transition:transform .2s;flex:none;color:var(--green-600);}
+.faq-q .plus{transition:transform .2s;flex:none;color:var(--green-700);}
 .faq-item.open .faq-q .plus{transform:rotate(45deg);}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;color:var(--ink-soft);}
 .faq-a p{padding-bottom:22px;margin:0;}
@@ -532,7 +539,7 @@ section{position:relative;}
 /* ---------- Misc ---------- */
 .divider-space{height:1px;background:var(--line);margin:0;}
 .badge-num{
-  width:36px;height:36px;border-radius:50%;background:var(--green-600);color:#fff;
+  width:36px;height:36px;border-radius:50%;background:var(--green-700);color:#fff;
   display:flex;align-items:center;justify-content:center;font-weight:800;font-family:var(--font-head);flex:none;
 }
 .skip-link{position:absolute;left:-999px;top:0;background:#fff;padding:12px 20px;z-index:1000;}
@@ -555,7 +562,7 @@ section{position:relative;}
 
 /* Focus visibility for keyboard users */
 a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible{
-  outline:3px solid var(--gold-500);outline-offset:3px;
+  outline:3px solid var(--navy-700);outline-offset:3px;
 }
 
 /* Hero money-plan card (homepage) */
@@ -564,7 +571,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   padding:28px;max-width:400px;margin:0 auto;position:relative;
 }
 .plan-card .plan-label{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);}
-.plan-card .plan-total{font-family:var(--font-head);font-size:3rem;font-weight:800;color:var(--green-600);line-height:1;margin:4px 0 18px;}
+.plan-card .plan-total{font-family:var(--font-head);font-size:3rem;font-weight:800;color:var(--green-700);line-height:1;margin:4px 0 18px;}
 .plan-bar{display:flex;height:44px;border-radius:12px;overflow:hidden;margin-bottom:14px;}
 .plan-bar span{display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;color:#fff;
   transform-origin:left;animation:grow-in .9s cubic-bezier(.2,.8,.2,1) both;}
@@ -635,13 +642,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 @media (max-width:520px){.steps{grid-template-columns:1fr;}}
 .steps li{background:#fff;border:1px solid var(--line);border-radius:var(--radius-md);padding:24px;position:relative;}
 .steps li::before{counter-increment:step;content:counter(step);display:flex;align-items:center;justify-content:center;
-  width:36px;height:36px;border-radius:50%;background:var(--green-600);color:#fff;font-weight:800;font-family:var(--font-head);margin-bottom:12px;}
+  width:36px;height:36px;border-radius:50%;background:var(--green-700);color:#fff;font-weight:800;font-family:var(--font-head);margin-bottom:12px;}
 .steps b{display:block;font-family:var(--font-head);font-size:1.1rem;color:var(--navy-900);margin-bottom:4px;}
 .steps span{color:var(--ink-soft);font-size:.95rem;}
 
 /* Notice / callout */
 .callout{background:var(--green-100);border-radius:var(--radius-md);padding:22px 26px;color:var(--navy-900);}
-.callout.gold{background:#fff6dc;}
+.callout.gold{background:var(--green-100);}
 
 /* Partners */
 .partner-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px;}
@@ -757,7 +764,7 @@ figure.testi-card{margin:0;}
 @media (max-width:520px){.teach-pair{grid-template-columns:1fr;} .choice-grid.two{grid-template-columns:1fr 1fr;}}
 .teach-pair div{border-radius:var(--radius-md);padding:18px;}
 .teach-pair .need{background:var(--green-100);}
-.teach-pair .want{background:#fff3d6;}
+.teach-pair .want{background:#e3eefa;}
 .teach-pair b{font-family:var(--font-head);font-size:1.15rem;display:block;margin-bottom:4px;}
 .family-box{background:var(--paper-soft);border:2px dashed var(--green-500);border-radius:var(--radius-md);padding:18px 20px;margin:20px 0 24px;}
 .end-actions{display:flex;flex-wrap:wrap;gap:10px;}
