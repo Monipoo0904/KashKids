@@ -89,9 +89,9 @@ window.KK = {
      To remove one completely, delete its { ... } block. */
   events: [
     { date: '2026-12-16', title: 'Table Talk Luncheon at Sandalwood High School', type: 'Money Makers in Training',
-      location: 'Sandalwood High School', time: '10:00 – 11:00 AM', link: '' },
+      location: 'Sandalwood High School', time: '10:00 – 11:00 AM', link: 'money-makers.html#sessions' },
     { date: '2026-12-17', title: 'Table Talk Luncheon at Sandalwood High School', type: 'Money Makers in Training',
-      location: 'Sandalwood High School', time: '10:00 – 11:00 AM', link: '' },
+      location: 'Sandalwood High School', time: '10:00 – 11:00 AM', link: 'money-makers.html#sessions' },
     // { date: '2026-11-08', title: 'Family Money Night', type: 'Family',
     //   location: 'Jacksonville, FL', time: '6:00 PM', link: '' },
   ],

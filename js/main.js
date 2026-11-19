@@ -170,9 +170,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Money Makers in Training sessions are listed as events automatically.
   const mmitEvents = allSessions.map(s => ({
     date: s.date, title: 'Money Makers in Training', type: 'Field Trip',
-    time: s.time, location: s.location, link: 'money-makers.html#register',
+    time: s.time, location: s.location, link: 'money-makers.html#sessions',
   }));
-  const events = [...(KK.events || []).filter(e => e.date), ...mmitEvents]
+  // Every event gets a working Details link: its own link, or the events list.
+  const events = [...(KK.events || []).filter(e => e.date).map(e => ({ ...e, link: e.link || 'resources.html#events' })), ...mmitEvents]
     .sort((a, b) => parseDate(a.date) - parseDate(b.date));
   const upcoming = events.filter(e => parseDate(e.date) >= today);
   const past = events.filter(e => parseDate(e.date) < today).reverse();
@@ -235,26 +236,11 @@ document.addEventListener('DOMContentLoaded', () => {
       cells.push(`<div class="${cls}" aria-label="${esc(label)}" title="${esc(label)}"${isToday ? ' aria-current="date"' : ''}>${day}${dayEvents.length ? '<span class="dot" aria-hidden="true"></span>' : ''}</div>`);
     }
 
-    const item = (e) => `
-        <div class="calendar-item${parseDate(e.date) < now ? ' is-past' : ''}">
-          <span>•</span>
-          <div><b>${esc(formatDate(e.date))}</b> — ${esc(e.title)}${e.time ? ` · ${esc(e.time)}` : ''}${e.location ? ` · ${esc(e.location)}` : ''}${e.link ? ` (<a href="${esc(e.link)}"${linkTarget(e.link)}>details</a>)` : ''}</div>
-        </div>`;
-
-    // If nothing else is left this month, point people at what's next.
-    const upcomingInMonth = monthEvents.filter(e => parseDate(e.date) >= now);
-    const nextUp = calendarEvents.filter(e => parseDate(e.date) >= now && parseDate(e.date) > end).slice(0, 3);
-    let listMarkup;
-    if (monthEvents.length) {
-      listMarkup = monthEvents.slice(0, 6).map(item).join('');
-      if (isThisMonth && !upcomingInMonth.length && nextUp.length) {
-        listMarkup += `<p class="calendar-next-label">Coming up</p>${nextUp.map(item).join('')}`;
-      }
-    } else if (offset >= 0 && nextUp.length) {
-      listMarkup = `<p class="empty-note">No events in ${esc(monthName)}.</p><p class="calendar-next-label">Coming up</p>${nextUp.map(item).join('')}`;
-    } else {
-      listMarkup = `<p class="empty-note">No events listed in ${esc(monthName)}.</p>`;
-    }
+    // Below the grid, show only the next upcoming event (from today), whatever month is shown.
+    const next = calendarEvents.find(e => parseDate(e.date) >= now);
+    const listMarkup = next
+      ? `<p class="calendar-next-label">Next up</p>${eventCard(next)}`
+      : '<p class="empty-note">New events are announced here and on our parent email list.</p>';
 
     wrap.innerHTML = `
       <div class="calendar-head">
